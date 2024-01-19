@@ -1,4 +1,4 @@
-const ACCESS_TOKEN = "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";
+const ACCESS_TOKEN = "";
 // Replace 'YOUR_GITHUB_USERNAME' with the desired GitHub username
 const githubUsername = "johnpapa";
 
@@ -9,11 +9,7 @@ const apiUrl = `https://api.github.com/users/${githubUsername}`;
 const reposUrl = `https://api.github.com/users/${githubUsername}/repos?per_page=100`;
 
 // Fetch user data using the fetch API
-fetch(apiUrl, {
-  headers: {
-    Authorization: `Bearer ${ACCESS_TOKEN}`,
-  },
-})
+fetch(apiUrl)
   .then((response) => response.json())
   .then((data) => {
     $("#profile-image").attr("src", data.avatar_url);
@@ -58,11 +54,7 @@ function fetchAllRepos() {
   let page = 1;
 
   function fetchPage() {
-    return fetch(`${reposUrl}&page=${page}`, {
-      headers: {
-        Authorization: `Bearer ${ACCESS_TOKEN}`,
-      },
-    })
+    return fetch(`${reposUrl}&page=${page}`)
       .then((response) => response.json())
       .then((repos) => {
         if (repos.length > 0) {
